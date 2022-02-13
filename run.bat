@@ -4,6 +4,6 @@
 @echo on
 
 set file=abc%1_%2
-g++ -o %file%.exe %file%.cpp
+g++ -o %file%.exe %file%.cpp -Winit-self -Wfloat-equal -Wno-sign-compare -Wshadow
 %file%.exe
 
