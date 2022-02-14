@@ -31,13 +31,27 @@ namespace good
 
 
 
-
+std::string to_ans(long long num10)
+{
+    std::string ret = "";
+    while(num10 != 0)
+    {
+        ret = (num10 % 2 == 0 ? "0" : "2") + ret;
+        num10 /= 2;
+    }
+    return ret;
+}
 
 
 
 
 int main()
 {
+    ll K;
+
+    INPUT(K);
+
+    OUTPUT(to_ans(K));
 
     return 0;    
 }
