@@ -8,7 +8,7 @@
 #include <map>
 
 #define PI  3.1415926535897931;
-#define LOOP(i, max)    for (int i=0; i<max; i++){
+#define LOOP(i, max)    for (long long i=0; i<max; i++){
 #define END     }
 #define INPUT(value)  std::cin >> value;
 #define OUTPUT(value)  std::cout << value << "\n";
@@ -30,6 +30,18 @@ namespace good
 
 
 
+struct Data
+{
+    int Number;
+    std::vector<ll> Indexes;
+    Data()
+    {
+        this->Number = 0;
+        this->Indexes = std::vector<ll>(0);
+    }
+};
+
+
 
 
 
@@ -37,6 +49,32 @@ namespace good
 
 int main()
 {
+    int N, Q;
+    std::map<ll, std::vector<ll>> data = {};
+
+    INPUT(N >> Q);
+
+    // 配列を一時的にどこかに格納する処理重かったらしい
+    LOOP(i, N)
+        ll a; std::cin >> a;    
+        data[a].push_back(i);
+    END
+
+    LOOP(i, Q)
+        ll x, k;
+        std::cin >> x >> k;
+
+        if (data[x].size()>=k)
+        {
+            OUTPUT(data[x][k-1]+1);
+        }
+        else
+        {
+            OUTPUT(-1);
+        }
+    END
+
+
 
     return 0;    
 }
