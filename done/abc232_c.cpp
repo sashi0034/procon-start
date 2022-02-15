@@ -9,7 +9,7 @@
 #include <numeric>
 
 #define PI  3.1415926535897931;
-#define LOOP(i, max)    for (int i=0; i<max; ++i){
+#define LOOP(i, max)    for (int i=0; i<max; i++){
 #define END     }
 #define INPUT(value)  std::cin >> value;
 #define OUTPUT(value)  std::cout << value << "\n";
@@ -39,6 +39,66 @@ namespace good
 
 int main()
 {
+    int N, M;
+    INPUT(N >> M);
+
+    std::vector<std::vector<bool>> con_ab = std::vector<std::vector<bool>>(N);
+    std::vector<std::vector<bool>> con_cd = std::vector<std::vector<bool>>(N);
+
+    LOOP(i, N)
+        con_ab[i] = std::vector<bool>(N);
+        con_cd[i] = std::vector<bool>(N);
+        LOOP(j, N)
+            con_ab[i][j] = false;
+            con_cd[i][j] = false;
+        END
+    END
+
+    LOOP(i, M)
+        int a, b;
+        INPUT(a >> b);
+        --a;
+        --b;
+        con_ab[a][b] = con_ab[b][a] = true;
+    END
+
+    LOOP(i, M)
+        int c=0, d=0;
+        INPUT(c >> d);
+        --c; 
+        --d;
+        con_cd[c][d] = con_cd[d][c] = true;
+    END
+
+    auto perm = std::vector<int>(N);
+    std::iota(std::begin(perm), std::end(perm), 0);
+
+    do 
+    {
+        bool ok=true;
+        LOOP(i, N)
+        LOOP(j, N)
+            int a2 = perm[i];
+            int b2 = perm[j];
+
+            if (con_ab[a2][b2] != con_cd[i][j])
+            {
+                ok=false;
+                break;
+            }
+        END
+        END
+        if (ok) 
+        {
+            OUTPUT("Yes\n");
+            return 0;
+        }
+
+    }while (std::next_permutation(std::begin(perm), std::end(perm)));
+    
+    
+    OUTPUT("No\n");
+
 
     return 0;    
 }
