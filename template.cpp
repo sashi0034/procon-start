@@ -8,7 +8,11 @@
 #include <map>
 #include <numeric>
 
-#define PI  3.1415926535897931;
+#define PI  3.1415926535897931
+#define LL_MAX   9223372036854775807
+// LL_MAX ~= 10 ^ 18
+#define INT_MAX   2147483647
+// INT_MAX ~= 10 ^ 9
 #define LOOP(i, max)    for (int i=0; i<max; ++i){
 #define END     }
 #define INPUT(value)  std::cin >> value;
