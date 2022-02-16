@@ -10,6 +10,6 @@ if "%file%" == "abc_" (
 
 move /-Y %file%.cpp .\done
 
-py ./claer.py
+py ./clear.py
 
 
