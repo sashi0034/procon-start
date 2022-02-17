@@ -13,8 +13,7 @@
 // LL_MAX ~= 10 ^ 18
 #define INT_MAX   2147483647
 // INT_MAX ~= 10 ^ 9
-#define LOOP(i, max)    for (int i=0; i<max; ++i){
-#define END     }
+#define REP(i, max)    for (int i=0; i<(int)max; ++i)
 #define INPUT(value)  std::cin >> value;
 #define OUTPUT(value)  std::cout << value << "\n";
 
