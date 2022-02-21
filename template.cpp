@@ -17,7 +17,7 @@
 // INT_MAX ~= 10 ^ 9
 #define REP(i, max)    for (int i=0; i<(int)max; ++i)
 #define INPUT(value)  std::cin >> value;
-#define OUTPUT(value)  std::cout << value << "\n";
+#define OUTPUT(value)  std::cout << value;
 
 using ll = long long;
 
