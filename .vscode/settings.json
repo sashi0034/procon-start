@@ -1,4 +1,9 @@
 {
+    "search.exclude": {
+        "**/done": true,
+        "**/unresolved": true
+    },
+
     "files.associations": {
         "cmath": "cpp",
         "iostream": "cpp",
@@ -48,7 +53,13 @@
         "xtr1common": "cpp",
         "xutility": "cpp",
         "xtree": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "numeric": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "queue": "cpp",
+        "sstream": "cpp",
+        "string": "cpp"
     },
     
 }

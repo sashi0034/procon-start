@@ -7,6 +7,8 @@
 #include <limits>
 #include <map>
 #include <numeric>
+#include <sstream>
+#include <queue>
 
 #define PI  3.1415926535897931
 #define LL_MAX   9223372036854775807
@@ -19,7 +21,7 @@
 
 using ll = long long;
 
-namespace good
+namespace my
 {
     int get_order(long long n);
     bool is_between(double n, double min, double max);
@@ -57,7 +59,7 @@ int main()
 
 
 
-namespace good
+namespace my
 {
     int get_order(long long n)
     {

@@ -8,6 +8,7 @@
 #include <map>
 #include <numeric>
 #include <sstream>
+#include <queue>
 
 #define PI  3.1415926535897931
 #define LL_MAX   9223372036854775807
@@ -33,28 +34,10 @@ namespace good
 
 
 
-int a_in, N;
-int res=INT_MAX;
+ll a_in, N;
+ll res=INT_MAX;
 
 
-void calc(int n, int cur)
-{
-    if (n%a_in==0)
-    {
-        res=std::min(n/a_in + cur, res);
-    }
-
-    if (n>=10 && n%10!=0)
-    {
-        int b=n%10;
-        int order = good::get_order(n);
-        n /= 10;
-        n += b*order;
-        calc(n, cur+1);
-    }
-
-
-}
 
 
 
@@ -64,10 +47,50 @@ int main()
 {
     INPUT(a_in >> N);
 
-    calc(N, 0);
-    if (res==INT_MAX) res=-1;
+    ll M = std::pow(10, good::get_order(N));
 
-    OUTPUT(res);
+    auto que = std::queue<ll>();
+    
+    std::vector<ll> d_arr = std::vector<ll>();
+    d_arr.resize(M, -1);
+
+    d_arr[1]=0;
+    que.push(1);
+    
+    while ( true)
+    {
+        if (que.size()==0) break;
+
+        ll c = que.front();
+        que.pop();
+        ll d_c = d_arr[c];
+
+        ll op1 = c*a_in;
+        if (op1 < M && d_arr[op1]==-1)
+        {
+            d_arr[op1] = d_c+1;
+            que.push(op1);
+        }
+        
+        if (c >= 10 && c%10!=0)
+        {
+            std::stringstream ss;
+            ss << c;
+            std::string str = ss.str();
+            ll op2 = std::stoi(str[str.length()-1]+str.substr(0, str.length()-1));
+            //OUTPUT(c << " > " << op2 << "\n");
+            
+            if (op2<M && d_arr[op2]==-1)
+            {
+                d_arr[op2] = d_c+1;
+                que.push(op2);
+            }
+        }
+        
+    }
+    
+    OUTPUT(d_arr[N]);
+    
 
     return 0;    
 }
