@@ -46,6 +46,30 @@ namespace my
 
 int main()
 {
+    ll N{}, K{};
+    vector<ll> A{};
+
+    vector<ll> sum{};
+    std::map<ll, ll> map{};
+
+    INPUT(N >> K);
+    A.resize(N+1);
+    REP(i, N) INPUT(A[i+1]);
+
+    sum.resize(N+1, 0);
+    for (int i=1; i<N+1; i++) 
+    {
+        sum[i]=sum[i-1]+A[i];
+    }
+
+    ll ans=0;
+    for (int i=1; i<N+1; i++)
+    {
+        map[sum[i-1]]++;
+        ans+=map[sum[i]-K];
+    }
+    OUTPUT(ans << "\n");
+    
 
     return 0;    
 }
