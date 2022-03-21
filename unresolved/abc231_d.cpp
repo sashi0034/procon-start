@@ -40,16 +40,94 @@ namespace my
 
 
 
+vector<pair<int,int>> fromTo{};
+vector<int> ok{};
 
-
+bool check2(int fromFirst, int from, int index)
+{
+    if (fromFirst==from) return true;
+    if (ok[index]==0) false;
+    ok[index]=1;
+    if (fromTo[index].first!=from && fromTo[index].first!=-1)
+    {
+        check2(fromFirst, index, fromTo[index].first);
+    }
+    else if (fromTo[index].second!=-1)
+    {        
+        check2(fromFirst, index, fromTo[index].second);
+    }
+    return false;
+}
 
 
 
 
 int main()
 {
+    int M{}, N{};
+    INPUT(M >> N);
 
-    return 0;    
+    
+    string ans = "Yes";
+    vector<int> A(M);
+    vector<int> B(M);
+    
+    fromTo.resize(N,pair<int,int>{-1,-1});
+
+    REP(i,M)
+    {
+        INPUT(A[i] >> B[i]);
+    }
+
+
+    REP(i,M)
+    {
+        if (fromTo[A[i]].second!=-1||fromTo[B[i]].second!=-1)
+        {
+            ans="No";
+            break;
+        }
+        if (fromTo[A[i]].first==-1)
+        {
+            fromTo[A[i]].first=B[i];
+        }
+        else
+        {
+            fromTo[A[i]].second=B[i];
+        }
+        
+        if (fromTo[B[i]].first==-1)
+        {
+            fromTo[B[i]].first=A[i];
+        }
+        else
+        {
+            fromTo[B[i]].second=A[i];
+        }
+    }
+    
+    if (ans=="Yes")
+    {
+        
+        ok.resize(M,0);
+
+
+        REP(i,M)
+        {
+            if (ok[i]==1)continue;
+            
+            if (check2(i,-1, i)) 
+            {
+                ans="No";
+                break;
+            }
+        }
+    }
+
+
+    OUTPUT(ans << "\n");
+
+    return 0;
 }
 
 

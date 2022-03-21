@@ -40,14 +40,50 @@ namespace my
 
 
 
-
-
-
+bool compare_by_b(pair<int, int> a, pair<int, int> b) {
+    if(a.second != b.second){
+        return a.second < b.second;
+    }else{
+        return a.first < b.first;
+    }
+}
 
 
 
 int main()
 {
+    int N;
+    int D;
+    INPUT(N >> D);
+    vector<pair<int ,int>> LR;
+    LR.resize(N);
+    REP(i, N)
+    {
+        INPUT(LR[i].first >> LR[i].second);
+        LR[i].first--;
+        LR[i].second--;
+    }
+
+    std::sort(LR.begin(), LR.end(), compare_by_b);
+
+    int ans=0;
+    ll cur = -D-1;
+
+    REP(i, N)
+    {
+        if (LR[i].first<=cur)
+        {
+            continue;
+        }
+        else
+        {
+            cur=LR[i].second + D-1;
+            ans++;
+        }
+    }
+    
+
+    OUTPUT(ans);
 
     return 0;    
 }
