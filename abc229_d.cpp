@@ -42,12 +42,50 @@ namespace my
 
 
 
-
+string S;
+vector<int> dot_con;
+int K;
 
 
 
 int main()
 {
+    cin >> S >> K;
+
+    dot_con.resize(S.size()+1,0);
+
+    for (int i=1; i<=S.size(); ++i)
+    {
+        if (S[i-1]=='.')
+        {
+            dot_con[i]=dot_con[i-1]+1;
+        }
+        else
+        {
+            dot_con[i]=dot_con[i-1];
+        }
+    }
+
+    int l=0;
+    int r=1;
+    int ans = 0;
+    while (l<S.size())
+    {
+        if (dot_con[r]-dot_con[l]<=K)
+        {
+            ans = std::max(r-l, ans);
+            //r=std::min(r+1,int(S.size()));
+            r++;
+            if (r>=S.size()+1) break;
+        }
+        else
+        {
+            l++;
+        }
+       //cout << l << "," << r << ","<<ans<< "\n";
+    }
+    cout << ans << std::endl;
+
 
     return 0;    
 }
