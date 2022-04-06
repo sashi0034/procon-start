@@ -16,14 +16,14 @@
 #define INT_MAX   2147483647
 // INT_MAX ~= 10 ^ 9
 #define REP(i, end)    for (int i=0; i<(int)end; ++i)
-#define INPUT(value)  std::cin >> value;
-#define OUTPUT(value)  std::cout << value;
 
 using ll = long long;
 using std::string;
 using std::vector;
 using std::pair;
 using std::tuple;
+using std::cin;
+using std::cout;
 
 namespace my
 {
@@ -42,48 +42,50 @@ namespace my
 
 
 
-
+using std::priority_queue;
 
 
 
 int main()
 {
-    string S;
-    int K;
-    INPUT(S >> K);
-    int s_size = S.size();
+    priority_queue<pair<int,int>> cheese{};
+    int N;
+    int W;
 
-    std::vector<int> dot_count = std::vector<int>(s_size);
+    cin >> N >> W;
+    for (int i=0; i<N; ++i)
     {
-        int c=0;
-        REP(i,s_size)
-        {
-            if (S[i]=='.') 
-            {
-                c++;
-            }
-            dot_count[i]=c;
-        }
+        int a;
+        int b;
+        cin >> a >> b;
+        cheese.push(pair<int,int>(a,b));
     }
 
-    int r=0, ans=0;
-    for (int l=0; l<s_size; ++l)
-    {
-        auto canReplace = [&](){
-            return 
-            r < s_size-1 &&
-            ((l==0 && dot_count[r+1]<=K) ||
-            (l>0 && dot_count[r+1]-dot_count[l-1]<=K));
-        };
+    ll ans = 0;
 
-        while (canReplace())
+    for (int i=0; i<N; ++i)
+    {
+        auto c = cheese.top();
+        cheese.pop();
+        ll quality = c.first;
+        ll wei = c.second;
+
+        //cout << quality << "," << wei <<","<< W<<","<<ans<<"\n";
+
+        if (wei<=W)
         {
-            r=r+1;
+            W-=wei;
+            ans+=quality*wei;
         }
-        ans = std::max(ans, r-l+1);
+        else
+        {
+            ans += quality*W;
+            break;
+        }
+
     }
 
-    OUTPUT(ans);
+    cout << ans << std::endl;
 
     return 0;    
 }

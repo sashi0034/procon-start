@@ -24,6 +24,7 @@ using std::pair;
 using std::tuple;
 using std::cin;
 using std::cout;
+using std::endl;
 
 namespace my
 {
