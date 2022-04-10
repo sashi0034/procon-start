@@ -13,22 +13,21 @@
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
-            "externalConsole": false,
+            "externalConsole": true,
             "MIMode": "gdb",
             "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",
             "setupCommands": [
                 {
-                    "description": "gdb の再フォーマットを有効にする",
                     "text": "-enable-pretty-printing",
+                    "description": "Enable Pretty Printing",
                     "ignoreFailures": true
                 },
                 {
-                    "description": "逆アセンブリ フレーバーを Intel に設定",
-                    "text": "-gdb-set disassembly-flavor intel",
+                    "text": "handle SIGPIPE nostop noprint pass",
+                    "description": "Ignore SIGPIPE",
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: g++.exe アクティブなファイルのビルド"
         }
     ]
 }

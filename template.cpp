@@ -11,6 +11,9 @@
 #include <queue>
 
 #define PI  3.1415926535897931
+#define DEG2RAD  PI / 180.0
+#define RAD2DEG  180.0 / PI
+
 #define LL_MAX   9223372036854775807
 // LL_MAX ~= 10 ^ 18
 #define INT_MAX   2147483647
@@ -22,28 +25,10 @@ using std::string;
 using std::vector;
 using std::pair;
 using std::tuple;
+using std::priority_queue;
 using std::cin;
 using std::cout;
 using std::endl;
-
-namespace my
-{
-    int get_order(long long n);
-    bool is_between(double n, double min, double max);
-    int get_sign(double n);
-    double get_distance(double x, double y);
-    double to_rad(double deg);
-    double to_deg(double rad);
-    std::string to_bin(long long num10);
-}
-
-
-
-
-
-
-
-
 
 
 
@@ -53,52 +38,4 @@ int main()
     return 0;    
 }
 
-
-
-
-
-
-
-
-
-
-
-
-namespace my
-{
-    int get_order(long long n)
-    {
-        return (int)std::log10(n) + 1;
-    }
-    bool is_between(double n, double min, double max)
-    {
-        return (min <= n && n <= max);
-    }
-    int get_sign(double n)
-    {
-        return (n > 0) - (n < 0);
-    }
-    double get_distance(double x, double y)
-    {
-        return std::sqrt(x * x + y * y);
-    }
-    double to_rad(double deg)
-    {
-        return (deg / 180.0) * PI;
-    }
-    double to_deg(double rad)
-    {
-        return (rad * 180) / PI;
-    }
-    std::string to_bin(long long num10)
-    {
-        std::string ret = "";
-        while(num10 != 0)
-        {
-            ret = (num10 % 2 == 0 ? "0" : "1") + ret;
-            num10 /= 2;
-        }
-        return ret;
-    }
-}
 
