@@ -7,5 +7,6 @@ elif [ $# -eq 0 ]; then
 fi
 
 mv $file.cpp ./done
+rm $file
 
-python3 ./clear.py
+#python3 ./clean.py

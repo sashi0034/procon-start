@@ -5,29 +5,27 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "g++.exe - アクティブ ファイルのビルドとデバッグ",
+            "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-            "args": [],
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [
+                "<",
+                "${workspaceFolder}/problem.in"
+            ],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": true,
+            "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",
+            "miDebuggerPath": "/usr/bin/gdb",
             "setupCommands": [
                 {
+                    "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
-                    "description": "Enable Pretty Printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "text": "handle SIGPIPE nostop noprint pass",
-                    "description": "Ignore SIGPIPE",
                     "ignoreFailures": true
                 }
-            ],
+            ]
         }
     ]
 }
