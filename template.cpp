@@ -18,17 +18,11 @@
 // LL_MAX ~= 10 ^ 18
 #define INT_MAX   2147483647
 // INT_MAX ~= 10 ^ 9
+
 #define REP(i, end)    for (int i=0; i<(int)end; ++i)
 
 using ll = long long;
-using std::string;
-using std::vector;
-using std::pair;
-using std::tuple;
-using std::priority_queue;
-using std::cin;
-using std::cout;
-using std::endl;
+using namespace std;
 
 
 
